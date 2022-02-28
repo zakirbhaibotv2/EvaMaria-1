@@ -422,7 +422,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "help":
         buttons = [[
             InlineKeyboardButton('Manual Filter', callback_data='manuelfilter'),
-            InlineKeyboardButton('Auto Filter', callback_data='autofilter')
+            InlineKeyboardButton('Auto Filter', callback_data='blafilter')
         ], [
             InlineKeyboardButton('Connection', callback_data='coct'),
             InlineKeyboardButton('Extra Mods', callback_data='extra')
@@ -481,7 +481,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode='html'
         )
-    elif query.data == "autofilter":
+    elif query.data == "blafilter":
         buttons = [[
             InlineKeyboardButton('👩‍🦯 Back', callback_data='help')
         ]]
