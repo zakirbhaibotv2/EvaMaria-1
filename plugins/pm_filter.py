@@ -801,7 +801,7 @@ async def manual_filters(client, message, text=False):
                 try:
                     if fileid == "None":
                         if btn == "[]":
-                          d = await client.send_message(group_id, reply_text, disable_web_page_preview=True)
+                          d = await client.send_message(group_id, reply_text, parse_mode=enums.ParseMode.HTML, disable_web_page_preview=True)
                           await asyncio.sleep(8)
                           await d.delete()
                         else:
@@ -811,6 +811,7 @@ async def manual_filters(client, message, text=False):
                                 reply_text,
                                 disable_web_page_preview=True,
                                 reply_markup=InlineKeyboardMarkup(button),
+                                parse_mode=enums.ParseMode.HTML,
                                 reply_to_message_id=reply_id)
                             await asynico.sleep(8)
                             await t.delete()
@@ -819,6 +820,7 @@ async def manual_filters(client, message, text=False):
                             group_id,
                             fileid,
                             caption=reply_text or "",
+                            parse_mode=enums.ParseMode.HTML,
                             reply_to_message_id=reply_id)
                         await asynico.sleep(8)
                         await g.delete()
@@ -827,6 +829,7 @@ async def manual_filters(client, message, text=False):
                         a = await message.reply_cached_media(
                             fileid,
                             caption=reply_text or "",
+                            parse_mode=enums.ParseMode.HTML,
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id)
                         await asyncio.sleep(8)
