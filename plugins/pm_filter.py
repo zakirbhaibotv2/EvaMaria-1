@@ -22,6 +22,7 @@ from database.filters_mdb import (
     get_filters,
 )
 import logging
+import asyncio
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
@@ -822,7 +823,7 @@ async def manual_filters(client, message, text=False):
                             await k.delete()
                     else:
                         button = eval(btn)
-                        x=await message.reply_cached_media(
+                        x = await message.reply_cached_media(
                             fileid,
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
