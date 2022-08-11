@@ -22,7 +22,6 @@ from database.filters_mdb import (
     get_filters,
 )
 import logging
-import asyncio
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
