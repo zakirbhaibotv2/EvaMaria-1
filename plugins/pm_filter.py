@@ -780,7 +780,7 @@ async def advantage_spell_chok(msg):
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
     j = await msg.reply("I couldn't find anything related to that\nDid you mean any one of these?",
                     reply_markup=InlineKeyboardMarkup(btn))
-    await asyncio.sleep(10)
+    await asyncio.sleep(8)
     await j.delete()
 
 
@@ -802,7 +802,7 @@ async def manual_filters(client, message, text=False):
                     if fileid == "None":
                         if btn == "[]":
                           d = await client.send_message(group_id, reply_text, disable_web_page_preview=True)
-                          await asyncio.sleep(10)
+                          await asyncio.sleep(8)
                           await d.delete()
                         else:
                             button = eval(btn)
@@ -812,7 +812,7 @@ async def manual_filters(client, message, text=False):
                                 disable_web_page_preview=True,
                                 reply_markup=InlineKeyboardMarkup(button),
                                 reply_to_message_id=reply_id)
-                            await asynico.sleep(10)
+                            await asynico.sleep(8)
                             await t.delete()
                     elif btn == "[]":
                         g = await client.send_cached_media(
@@ -820,7 +820,7 @@ async def manual_filters(client, message, text=False):
                             fileid,
                             caption=reply_text or "",
                             reply_to_message_id=reply_id)
-                        await asynico.sleep(10)
+                        await asynico.sleep(8)
                         await g.delete()
                     else:
                         button = eval(btn)
@@ -829,7 +829,7 @@ async def manual_filters(client, message, text=False):
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id)
-                        await asyncio.sleep(10)
+                        await asyncio.sleep(8)
                         await a.delete()
                 except Exception as e:
                     logger.exception(e)
