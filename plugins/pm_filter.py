@@ -811,16 +811,16 @@ async def manual_filters(client, message, text=False):
                                 disable_web_page_preview=True,
                                 reply_markup=InlineKeyboardMarkup(button),
                                 reply_to_message_id=reply_id)
-                                await asyncio.sleep(10)
-                                await x.delete()
+                             await asyncio.sleep(10)
+                             await x.delete()
                     elif btn == "[]":
                       k = await client.send_cached_media(
                             group_id,
                             fileid,
                             caption=reply_text or "",
                             reply_to_message_id=reply_id)
-                            await asyncio.sleep(10)
-                            await k.delete()
+                       await asyncio.sleep(10)
+                       await k.delete()
                     else:
                         button = eval(btn)
                         x = await message.reply_cached_media(
@@ -828,8 +828,8 @@ async def manual_filters(client, message, text=False):
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id)
-                            await asyncio.sleep(10)
-                            await x.delete()
+                         await asyncio.sleep(10)
+                         await x.delete()
                 except Exception as e:
                     logger.exception(e)
                 break
