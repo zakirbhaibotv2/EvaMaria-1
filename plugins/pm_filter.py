@@ -815,13 +815,13 @@ async def manual_filters(client, message, text=False):
                             await asynico.sleep(10)
                             await x.delete()
                     elif btn == "[]":
-                      k = await client.send_cached_media(
+                        k = await client.send_cached_media(
                             group_id,
                             fileid,
                             caption=reply_text or "",
                             reply_to_message_id=reply_id)
-                    await asynico.sleep(10)
-                    await k.delete()
+                        await asynico.sleep(10)
+                        await k.delete()
                     else:
                         button = eval(btn)
                         x = await message.reply_cached_media(
