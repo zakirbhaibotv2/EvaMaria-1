@@ -44,7 +44,7 @@ async def start(client, message):
         buttons = [[
             InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
-            InlineKeyboardButton('〽️ MAIN CHANNEL 〽️', url='https://t.me/joinchat/Fhcssgw5HFhcssgw5H8wwMDBl8wwMDBl')
+            InlineKeyboardButton('〽️ MAIN CHANNEL 〽️', url='https://t.me/+HvWm2HHs5Ck3NjNl')
             ],[
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
             InlineKeyboardButton('Series Group', url='https://t.me/mc_serie')
@@ -93,7 +93,7 @@ async def start(client, message):
             InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
             ],[
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/TeamEvamaria')
+            InlineKeyboardButton('Movies Group ✨', url='https://t.me/mc_cinema')
             ],[
             InlineKeyboardButton('ℹ️ Help', callback_data='help'),
             InlineKeyboardButton('😊 About', callback_data='about')
