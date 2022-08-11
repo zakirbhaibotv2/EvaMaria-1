@@ -818,12 +818,14 @@ async def manual_filters(client, message, text=False):
                         )
                     else:
                         button = eval(btn)
-                        await message.reply_cached_media(
+                      x=await message.reply_cached_media(
                             fileid,
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id
                         )
+                       await asyncio.sleep(1200)
+                                 await x.delete()
                 except Exception as e:
                     logger.exception(e)
                 break
