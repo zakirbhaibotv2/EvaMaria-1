@@ -778,10 +778,10 @@ async def advantage_spell_chok(msg):
         )
     ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    k = await msg.reply("I couldn't find anything related to that\nDid you mean any one of these?",
+    j = await msg.reply("I couldn't find anything related to that\nDid you mean any one of these?",
                     reply_markup=InlineKeyboardMarkup(btn))
     await asyncio.sleep(10)
-    await k.delete()
+    await j.delete()
 
 
 async def manual_filters(client, message, text=False):
@@ -801,36 +801,36 @@ async def manual_filters(client, message, text=False):
                 try:
                     if fileid == "None":
                         if btn == "[]":
-                          k = await client.send_message(group_id, reply_text, disable_web_page_preview=True)
+                          d = await client.send_message(group_id, reply_text, disable_web_page_preview=True)
                           await asyncio.sleep(10)
-                          await k.delete()
+                          await d.delete()
                         else:
                             button = eval(btn)
-                            x = await client.send_message(
+                            t = await client.send_message(
                                 group_id,
                                 reply_text,
                                 disable_web_page_preview=True,
                                 reply_markup=InlineKeyboardMarkup(button),
                                 reply_to_message_id=reply_id)
                             await asynico.sleep(10)
-                            await x.delete()
+                            await t.delete()
                     elif btn == "[]":
-                        k = await client.send_cached_media(
+                        g = await client.send_cached_media(
                             group_id,
                             fileid,
                             caption=reply_text or "",
                             reply_to_message_id=reply_id)
                         await asynico.sleep(10)
-                        await k.delete()
+                        await g.delete()
                     else:
                         button = eval(btn)
-                        x = await message.reply_cached_media(
+                        a = await message.reply_cached_media(
                             fileid,
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id)
                         await asyncio.sleep(10)
-                        await x.delete()
+                        await a.delete()
                 except Exception as e:
                     logger.exception(e)
                 break
