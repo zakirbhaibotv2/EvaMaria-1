@@ -808,20 +808,22 @@ async def manual_filters(client, message, text=False):
                                 reply_to_message_id=reply_id
                             )
                     elif btn == "[]":
-                        await client.send_cached_media(
+                        d = await client.send_cached_media(
                             group_id,
                             fileid,
                             caption=reply_text or "",
-                            reply_to_message_id=reply_id
-                        )
+                            reply_to_message_id=reply_id)
+                        await asynico.sleep(8)
+                        await d.delete
                     else:
                         button = eval(btn)
-                        await message.reply_cached_media(
+                        x = await message.reply_cached_media(
                             fileid,
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
-                            reply_to_message_id=reply_id
-                        )
+                            reply_to_message_id=reply_id)
+                        await asynico.sleep(8)
+                        await x.delete()
                 except Exception as e:
                     logger.exception(e)
                 break
