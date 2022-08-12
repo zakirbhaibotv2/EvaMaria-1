@@ -34,7 +34,7 @@ SPELL_CHECK = {}
 async def give_filter(client, message):
     k = await manual_filters(client, message)
     if k == False:
-        await bla_filter(client, message)
+        await auto_filter(client, message)
 
 
 @Client.on_callback_query(filters.regex(r"^next"))
@@ -133,7 +133,7 @@ async def advantage_spoll_choker(bot, query):
         files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
         if files:
             k = (movie, files, offset, total_results)
-            await bla_filter(bot, query, k)
+            await auto_filter(bot, query, k)
         else:
             k = await query.message.edit('This Movie Not Found In DataBase')
             await asyncio.sleep(10)
@@ -407,7 +407,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('➕ Add Me To Your Groups ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ], [
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/+HvWm2HHs5Ck3NjNl')
+            InlineKeyboardButton('🤖 Updates', url='https://t.me/TeamEvamaria')
         ], [
             InlineKeyboardButton('ℹ️ Help', callback_data='help'),
             InlineKeyboardButton('😊 About', callback_data='about')
@@ -422,7 +422,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "help":
         buttons = [[
             InlineKeyboardButton('Manual Filter', callback_data='manuelfilter'),
-            InlineKeyboardButton('Auto Filter', callback_data='blafilter')
+            InlineKeyboardButton('Auto Filter', callback_data='autofilter')
         ], [
             InlineKeyboardButton('Connection', callback_data='coct'),
             InlineKeyboardButton('Extra Mods', callback_data='extra')
@@ -438,13 +438,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "about":
         buttons = [[
-            InlineKeyboardButton('〽️ Main Channel 〽️', url='https://t.me/+HvWm2HHs5Ck3NjNl'),
+            InlineKeyboardButton('🤖 Updates', url='https://t.me/TeamEvamaria'),
+            InlineKeyboardButton('♥️ Source', callback_data='source')
         ], [
-            InlineKeyboardButton('Main Group 🍿', url='https://t.me/mc_cinema'),
-            InlineKeyboardButton('Series Group 🎟️', url='https://t.me/mc_serie'),
-        ], [
-            InlineKeyboardButton('Series Channel', url='https://t.me/mc_series_c'),
-            InlineKeyboardButton('🏠 Home', callback_data='strat')
+            InlineKeyboardButton('🏠 Home', callback_data='start'),
+            InlineKeyboardButton('🔐 Close', callback_data='close_data')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
@@ -483,13 +481,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
-    elif query.data == "blafilter":
+    elif query.data == "autofilter":
         buttons = [[
             InlineKeyboardButton('👩‍🦯 Back', callback_data='help')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
-            text=script.BLAFILTER_TXT,
+            text=script.AUTOFILTER_TXT,
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
@@ -617,7 +615,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     await query.answer('Piracy Is Crime')
 
 
-async def bla_filter(client, msg, spoll=False):
+async def auto_filter(client, msg, spoll=False):
     if not spoll:
         message = msg
         settings = await get_settings(message.chat.id)
@@ -778,10 +776,8 @@ async def advantage_spell_chok(msg):
         )
     ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    j = await msg.reply("I couldn't find anything related to that\nDid you mean any one of these?",
+    await msg.reply("I couldn't find anything related to that\nDid you mean any one of these?",
                     reply_markup=InlineKeyboardMarkup(btn))
-    await asyncio.sleep(8)
-    await j.delete()
 
 
 async def manual_filters(client, message, text=False):
@@ -801,39 +797,31 @@ async def manual_filters(client, message, text=False):
                 try:
                     if fileid == "None":
                         if btn == "[]":
-                          d = await client.send_message(group_id, reply_text, parse_mode=enums.ParseMode.HTML, disable_web_page_preview=True)
-                          await asyncio.sleep(8)
-                          await d.delete()
+                            await client.send_message(group_id, reply_text, disable_web_page_preview=True)
                         else:
                             button = eval(btn)
-                            t = await client.send_message(
+                            await client.send_message(
                                 group_id,
                                 reply_text,
                                 disable_web_page_preview=True,
                                 reply_markup=InlineKeyboardMarkup(button),
-                                parse_mode=enums.ParseMode.HTML,
-                                reply_to_message_id=reply_id)
-                            await asynico.sleep(8)
-                            await t.delete()
+                                reply_to_message_id=reply_id
+                            )
                     elif btn == "[]":
-                        g = await client.send_cached_media(
+                        await client.send_cached_media(
                             group_id,
                             fileid,
                             caption=reply_text or "",
-                            parse_mode=enums.ParseMode.HTML,
-                            reply_to_message_id=reply_id)
-                        await asynico.sleep(8)
-                        await g.delete()
+                            reply_to_message_id=reply_id
+                        )
                     else:
                         button = eval(btn)
-                        a = await message.reply_cached_media(
+                        await message.reply_cached_media(
                             fileid,
                             caption=reply_text or "",
-                            parse_mode=enums.ParseMode.HTML,
                             reply_markup=InlineKeyboardMarkup(button),
-                            reply_to_message_id=reply_id)
-                        await asyncio.sleep(8)
-                        await a.delete()
+                            reply_to_message_id=reply_id
+                        )
                 except Exception as e:
                     logger.exception(e)
                 break
