@@ -814,7 +814,7 @@ async def manual_filters(client, message, text=False):
                             caption=reply_text or "",
                             reply_to_message_id=reply_id)
                         await asynico.sleep(8)
-                        await d.delete
+                        await d.delete()
                     else:
                         button = eval(btn)
                         x = await message.reply_cached_media(
