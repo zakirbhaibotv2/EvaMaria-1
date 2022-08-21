@@ -800,6 +800,7 @@ async def manual_filters(client, message, text=False):
                             g = await client.send_message(group_id, reply_text, disable_web_page_preview=True)
                             await asynico.sleep(8)
                             await g.delete()
+                            return
                         else:
                             button = eval(btn)
                             c = await client.send_message(
@@ -807,8 +808,7 @@ async def manual_filters(client, message, text=False):
                                 reply_text,
                                 disable_web_page_preview=True,
                                 reply_markup=InlineKeyboardMarkup(button),
-                                reply_to_message_id=reply_id
-                            )
+                                reply_to_message_id=reply_id)
                             await asynico.sleep(8)
                             await c.delete()
                             return
@@ -817,8 +817,7 @@ async def manual_filters(client, message, text=False):
                             group_id,
                             fileid,
                             caption=reply_text or "",
-                            reply_to_message_id=reply_id
-                        )
+                            reply_to_message_id=reply_id)
                         await asynico.sleep(8)
                         await d.delete()
                         return
@@ -828,8 +827,7 @@ async def manual_filters(client, message, text=False):
                             fileid,
                             caption=reply_text or "",
                             reply_markup=InlineKeyboardMarkup(button),
-                            reply_to_message_id=reply_id
-                        )
+                            reply_to_message_id=reply_id)
                         await asynico.sleep(8)
                         await x.delete()
                         return
