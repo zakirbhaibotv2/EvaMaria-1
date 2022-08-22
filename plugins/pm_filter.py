@@ -780,7 +780,7 @@ async def advantage_spell_chok(msg):
                     reply_markup=InlineKeyboardMarkup(btn))
     await asyncio.sleep(2000)
     await x.delete()
-    return 0
+    return 1
 
 
 async def manual_filters(client, message, text=False):
@@ -797,7 +797,7 @@ async def manual_filters(client, message, text=False):
                 c = reply_text = reply_text.replace("\\n", "\n").replace("\\t", "\t")
                 await asyncio.sleep(8)
                 await c.delete
-                return 0
+                return 1
 
             if btn is not None:
                 try:
@@ -806,7 +806,7 @@ async def manual_filters(client, message, text=False):
                             g = await client.send_message(group_id, reply_text, disable_web_page_preview=True)
                             await asyncio.sleep(8)
                             await g.delete()
-                            return 0
+                            return 1
                         else:
                             button = eval(btn)
                             c = await client.send_message(
@@ -817,7 +817,7 @@ async def manual_filters(client, message, text=False):
                                 reply_to_message_id=reply_id)
                             await asyncio.sleep(8)
                             await c.delete()
-                            return 0
+                            return 1
                     elif btn == "[]":
                         d = await client.send_cached_media(
                             group_id,
@@ -826,7 +826,7 @@ async def manual_filters(client, message, text=False):
                             reply_to_message_id=reply_id)
                         await asyncio.sleep(8)
                         await d.delete()
-                        return 0
+                        return 1
                     else:
                         button = eval(btn)
                         x = await message.reply_cached_media(
@@ -836,7 +836,7 @@ async def manual_filters(client, message, text=False):
                             reply_to_message_id=reply_id)
                         await asyncio.sleep(8)
                         await x.delete()
-                        return
+                        return 1
                 except Exception as e:
                     logger.exception(e)
                 break
