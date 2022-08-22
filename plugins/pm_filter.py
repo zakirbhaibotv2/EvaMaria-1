@@ -767,7 +767,7 @@ async def advantage_spell_chok(msg):
         k = await msg.reply("I couldn't find anything related to that. Check your spelling")
         await asyncio.sleep(8)
         await k.delete()
-        return
+        return 0
     SPELL_CHECK[msg.id] = movielist
     btn = [[
         InlineKeyboardButton(
@@ -780,7 +780,7 @@ async def advantage_spell_chok(msg):
                     reply_markup=InlineKeyboardMarkup(btn))
     await asyncio.sleep(8)
     await x.delete()
-    return
+    return 0
 
 
 async def manual_filters(client, message, text=False):
@@ -803,7 +803,7 @@ async def manual_filters(client, message, text=False):
                             g = await client.send_message(group_id, reply_text, disable_web_page_preview=True)
                             await asyncio.sleep(8)
                             await g.delete()
-                            return
+                            return 0
                         else:
                             button = eval(btn)
                             c = await client.send_message(
@@ -814,7 +814,7 @@ async def manual_filters(client, message, text=False):
                                 reply_to_message_id=reply_id)
                             await asyncio.sleep(8)
                             await c.delete()
-                            return
+                            return 0
                     elif btn == "[]":
                         d = await client.send_cached_media(
                             group_id,
@@ -823,7 +823,7 @@ async def manual_filters(client, message, text=False):
                             reply_to_message_id=reply_id)
                         await asyncio.sleep(8)
                         await d.delete()
-                        return
+                        return 0
                     else:
                         button = eval(btn)
                         x = await message.reply_cached_media(
